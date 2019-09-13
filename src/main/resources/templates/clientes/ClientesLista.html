@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+    
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width" />
+		<title>Lista de Clientes</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+   			<h1>Lista de Serviços</h1>
+	   	</div>
+	   	<table class="table table-sm table-striped table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>Cliente</th>
+					<th>Telefone</th>
+					<th align="center">Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cliente : ${clientes}">
+					<td th:text="${cliente.nome}"><td>
+					<td th:text="${cliente.telefone}"><td>
+					<td>
+						<div class="btn-group pull-center">
+							<a class = "btn btn-sm btn-primary" th:href="@{/clientes/edit/{id}(id=${cliente.id})}">Editar</a>
+							<a class = "delete btn btn-sm btn-danger" th:href="@{clientes/delete/{id}(id=${cliente.id})}">Excluir</a>
+						</div>
+					</td>
+				</tr>	
+			</tbody>
+		</table>
+	</div>
+	<div class="panel-footer">
+		<a class="btn btn-sm btn-success" th:href="@{/clientes/add/}" >Adicionar</a>
+	</div>
+</body>
+</html>
