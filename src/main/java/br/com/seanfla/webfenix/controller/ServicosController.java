@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.seanfla.webfenix.model.ServicoModel;
 import br.com.seanfla.webfenix.repository.ServicosRepository;
 
 @Controller
-//@RequestMapping("/servicos/servicoslista")
+@RequestMapping("/servicos")
 public class ServicosController {
 	
 	@Autowired
@@ -27,7 +27,7 @@ public class ServicosController {
 	public ModelAndView listar() {
 		
 		
-		ModelAndView mv = new ModelAndView("/servicos/servicoslista");
+		ModelAndView mv = new ModelAndView("servicos/servicoslista");
 		mv.addObject("servicos", servicos.findAll());
 		mv.addObject(new ServicoModel());		
 		return mv;
@@ -35,7 +35,7 @@ public class ServicosController {
 	}
 	
 	//Método que carrega página para create
-	 @GetMapping("/servicos/add")
+	 @GetMapping("/add")
 	 public ModelAndView add(ServicoModel servico) {
 	         
 	        ModelAndView mv = new ModelAndView("servicos/servicosman");
@@ -45,7 +45,7 @@ public class ServicosController {
 	 }
 	
 	//Método para salvar os registros na página
-	@PostMapping("/servicos/save")
+	@PostMapping("/save")
 	 public ModelAndView save(@Valid ServicoModel servico, BindingResult result) {
         
         if(result.hasErrors()) {
@@ -58,13 +58,13 @@ public class ServicosController {
     }
 	
 	//Método para editar registros da página
-	@GetMapping("/servicos/edit/{id}")
+	@GetMapping("/edit/{id}")
 	public ModelAndView Editar(@PathVariable("id") Long id) {
 		
 		return add(servicos.findOne(id));
 	}	
 	
-	@GetMapping("/servicos/delete/{id}")
+	@GetMapping("/delete/{id}")
 	public ModelAndView Deletar(@PathVariable("id") Long id) {
 		
 		servicos.delete(id);

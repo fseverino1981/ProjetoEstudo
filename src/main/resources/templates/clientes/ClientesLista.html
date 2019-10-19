@@ -12,7 +12,7 @@
 <body>
 	<div class="panel panel-default" style="margin: 10px">
 		<div class="panel-heading">
-   			<h1>Lista de Serviços</h1>
+   			<h1>Lista de Clientes</h1>
 	   	</div>
 	   	<table class="table table-sm table-striped table-hover table-bordered">
 			<thead>
@@ -24,12 +24,12 @@
 			</thead>
 			<tbody>
 				<tr th:each="cliente : ${clientes}">
-					<td th:text="${cliente.nome}"><td>
-					<td th:text="${cliente.telefone}"><td>
+					<td th:text="${cliente.nome}"></td>
+					<td th:text="${cliente.telefone}"></td>
 					<td>
 						<div class="btn-group pull-center">
 							<a class = "btn btn-sm btn-primary" th:href="@{/clientes/edit/{id}(id=${cliente.id})}">Editar</a>
-							<a class = "delete btn btn-sm btn-danger" th:href="@{clientes/delete/{id}(id=${cliente.id})}">Excluir</a>
+							<a class = "delete btn btn-sm btn-danger" th:href="@{/clientes/delete/{id}(id=${cliente.id})}">Excluir</a>
 						</div>
 					</td>
 				</tr>	
@@ -39,5 +39,7 @@
 	<div class="panel-footer">
 		<a class="btn btn-sm btn-success" th:href="@{/clientes/add/}" >Adicionar</a>
 	</div>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
